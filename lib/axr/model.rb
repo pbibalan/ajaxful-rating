@@ -39,9 +39,9 @@ module AjaxfulRating # :nodoc:
 
       if options[:dimensions].is_a?(Array)
         options[:dimensions].each do |dimension|
-          has_many "#{dimension}_rates", :dependent => :destroy,
+          has_many "#{dimension}_rates".to_sym, :dependent => :destroy,
             :conditions => {:dimension => dimension.to_s}, :class_name => 'Rate', :as => :rateable
-          has_many "#{dimension}_raters", :through => "#{dimension}_rates", :source => :rater
+          has_many "#{dimension}_raters".to_sym, :through => "#{dimension}_rates".to_sym, :source => :rater
 
           axr_config(dimension).update(options)
         end 
